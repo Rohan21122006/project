@@ -1,18 +1,15 @@
 import streamlit as st
 import random
-
-# Dummy user data
 users = {
-    "user1": {"password": "pass1", "balance": 1000},
-    "user2": {"password": "pass2", "balance": 2000}
+    "cust1": {"password": "rk@123", "balance": 1000},
+    "cust2": {"password": "rk@123", "balance": 2000}
 }
 
-# Dummy transaction data
 transactions = [
-    {"user": "user1", "amount": 100, "category": ""},
-    {"user": "user1", "amount": 50, "category": ""},
-    {"user": "user2", "amount": 200, "category": ""},
-    {"user": "user2", "amount": 150, "category": ""}
+    {"cust": "cust1", "amount": 100, "category": ""},
+    {"cust": "cust1", "amount": 50, "category": ""},
+    {"cust": "cust2", "amount": 200, "category": ""},
+    {"cust": "cust2", "amount": 150, "category": ""}
 ]
 
 # Dummy machine learning model for transaction categorization
@@ -29,13 +26,13 @@ def authenticate(username, password):
 
 # Transaction history retrieval
 def get_transactions(username):
-    return [t for t in transactions if t["user"] == username]
+    return [t for t in transactions if t["cust"] == username]
 
 # Make a transaction
 def make_transaction(username, amount):
     if username in users:
         users[username]["balance"] -= amount
-        transactions.append({"user": username, "amount": amount, "category": categorize_transaction({"user": username, "amount": amount})})
+        transactions.append({"cust": username, "amount": amount, "category": categorize_transaction({"cust": username, "amount": amount})})
         return True
     else:
         return False
